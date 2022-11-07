@@ -13,18 +13,18 @@ public class AnimationsHandler : MonoBehaviour
         myAnimator = GetComponent<Animator>();
     }
 
-   
-    void Update()
-    {
-        
-    }
 
     void Change(string Animation,bool b)
     {
         if (Animation == "Running")
         {
             myAnimator.SetBool("Running",b);
-           
+
+        }
+        if (Animation == "Sitting")
+
+        {
+            myAnimator.SetBool("Sitting", b);
         }
         
     }
