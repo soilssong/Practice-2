@@ -8,26 +8,32 @@ public class AnimationsHandler : MonoBehaviour
     Animator myAnimator;
     void Start()
     {
-        Player.changeAnimation += Change;
-
+        Player.changeRightLeftUpDown += ChangeRightLeftUpDown;
+       
         myAnimator = GetComponent<Animator>();
     }
 
 
-    void Change(string Animation,bool b)
+    void ChangeRightLeftUpDown(string Animation,float x,float y,bool a)
     {
-        if (Animation == "Running")
+        if (Animation == "Walking" && a == true)
         {
-            myAnimator.SetBool("Running",b);
+            myAnimator.SetFloat("moveX",x);
+            myAnimator.SetFloat("moveY", y);
+            myAnimator.SetBool("moving",a);
+          
 
         }
-        if (Animation == "Sitting")
-
+        else if(Animation == "Walking" && a == false)
         {
-            myAnimator.SetBool("Sitting", b);
+            Debug.Log("aaa");
+            myAnimator.SetBool("moving", a);
         }
+       
         
     }
-
     
+
+
+
 }

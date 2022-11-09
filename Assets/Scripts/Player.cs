@@ -7,74 +7,82 @@ public class Player : Singleton<Player>
 
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
-    public static bool isRunning = false;
-    private static bool isSitting = false;
-    Vector2 movement;
-    public delegate void Animation(string animation_type, bool a);
-    public static event Animation changeAnimation;
+    public static bool isMoving = false;
 
-     void Update()
+    Vector3 movement;
+    public delegate void Animation(string animation_type, float x,float y , bool a);
+
+    public static event Animation changeRightLeftUpDown;
+
+    void Update()
     {
-        IsRunning();
-        IsSitting();
-        IsWalking();
-       
+        //IsRunning();
 
+
+        movement = Vector3.zero;
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        IsWalking();
+
+       
     }
 
     void IsWalking()
     {
-        if (isSitting !=true) 
-        {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        }
-       
-    }
-
-    void IsSitting()
-    {
-        if (Input.GetKey(KeyCode.N))
-        {
-            isSitting = true;
-            if (changeAnimation != null)
-            {
-                changeAnimation("Sitting", true);
-
-            }
-        }
-
-        else if (!Input.GetKey(KeyCode.N))
-        {
-            isSitting = false;
-
-            changeAnimation("Sitting", false);
-
-        }
-    }
-
-    void IsRunning()
-    {
-        if (Input.GetKey(KeyCode.M))
-        {
-
-            moveSpeed = 10f;
-            if (changeAnimation != null)
-            {
-                changeAnimation("Running",true);
-                
-            }
-        }
-
-        else if(!Input.GetKey(KeyCode.M))
-        {
-            moveSpeed = 5f;
-            changeAnimation("Running",false);
-           
-        }
       
+        if (movement != Vector3.zero)
+        {
+            isMoving = true;
+            MoveCharacter();
+        }
+        else { isMoving = false; MoveCharacter(); }
+           
     }
+    void MoveCharacter()
+    {
+      
+        rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        if (changeRightLeftUpDown != null)
+        {
+            changeRightLeftUpDown("Walking", movement.x, movement.y, isMoving);
+
+            
+        }
+
+        
+    }
+    // void StopCharacter()
+    //{
+    //    if (changeRightLeftUpDown != null)
+    //    {
+    //        changeRightLeftUpDown("Walking", movement.x, movement.y, isMoving);
+
+
+    //    }
+    //}
+
+
+    
+
+        
+    
+
+    //void IsRunning()
+    //{
+    //    if (Input.GetKey(KeyCode.M))
+    //    {
+
+    //        moveSpeed = 10f;
+    //        if (changeAnimation != null)
+    //        {
+    //            changeAnimation("Running",movement.x);
+                
+    //        }
+    //    }
+
+      
+    //}
 
     
 
