@@ -26,7 +26,6 @@ public class AnimationsHandler : MonoBehaviour
         }
         else if(Animation == "Walking" && a == false)
         {
-            Debug.Log("aaa");
             myAnimator.SetBool("moving", a);
         }
        

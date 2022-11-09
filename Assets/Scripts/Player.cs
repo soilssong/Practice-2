@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Singleton<Player>
 {
 
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     public Rigidbody2D rb;
     public static bool isMoving = false;
 
@@ -40,6 +40,7 @@ public class Player : Singleton<Player>
     }
     void MoveCharacter()
     {
+        moveSpeed = 20f;
       
         rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
 
@@ -52,15 +53,7 @@ public class Player : Singleton<Player>
 
         
     }
-    // void StopCharacter()
-    //{
-    //    if (changeRightLeftUpDown != null)
-    //    {
-    //        changeRightLeftUpDown("Walking", movement.x, movement.y, isMoving);
-
-
-    //    }
-    //}
+   
 
 
     
