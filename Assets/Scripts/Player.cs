@@ -40,7 +40,7 @@ public class Player : Singleton<Player>
     }
     void MoveCharacter()
     {
-        moveSpeed = 20f;
+        moveSpeed = 10f;
       
         rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
 
