@@ -4,38 +4,49 @@ using UnityEngine;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
-    [SerializeField] SO_Item_List itemList = null;
-    private Dictionary<int, ItemDetails> itemDetailsDictionary;
+  
+    [SerializeField] SO_Item_List itemsList = null;
+
+    private Dictionary<int, ItemDetails> itemListDictionary;
+
 
 
     void Start()
     {
-        CreateItemDetailsDictionary();
+        
+
+        CreateDictionary();
     }
 
-    public void CreateItemDetailsDictionary()
+    public void CreateDictionary()
     {
-        itemDetailsDictionary = new Dictionary<int, ItemDetails>();
-
-        foreach (ItemDetails itemDetails in itemList.itemDetails)
+        itemListDictionary = new Dictionary<int, ItemDetails>();
+        foreach (ItemDetails item in itemsList.itemDetails)
         {
-            itemDetailsDictionary.Add(itemDetails.ItemCode, itemDetails);
+            itemListDictionary.Add(item.ItemCode, item);
         }
     }
 
-    public ItemDetails GetItemDetails(int itemCode)
+    public string GetItemName(int itemCode)
     {
         ItemDetails itemdetails;
 
-        if (itemDetailsDictionary.TryGetValue(itemCode, out itemdetails))
+        if (itemListDictionary.TryGetValue(itemCode,out itemdetails))
         {
-            return itemdetails;
+            return itemdetails.ItemName;
         }
         else
         {
             return null;
         }
     }
+
+
+
+
+
+
+
 
 
 
