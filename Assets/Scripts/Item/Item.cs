@@ -26,8 +26,19 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void Init(int itemCode)
+    public void Init(int itemCodeParam)
     {
+        if (itemCodeParam != 0)
+        {
+            itemCode = itemCodeParam;
+            ItemDetails itemdetails = InventoryManager.Instance.GetItemDetails(itemCode);
 
+            itemSpriteRenderer.sprite = itemdetails.ItemSprite;
+
+            if (itemdetails.isBreakable == true)
+            {
+                gameObject.AddComponent<ItemWubble>();
+            }
+        }
     }
 }

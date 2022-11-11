@@ -18,8 +18,22 @@ MonoBehaviour:
     ItemDescription: Will give ya extra joy of life
     ItemSprite: {fileID: -220984460, guid: e88786ff22af8644cbcd6305a3eccec7, type: 3}
     CanBeEaten: 0
+    isBreakable: 0
   - ItemCode: 1
     ItemName: Stone
     ItemDescription: Just a stone that does not much.
     ItemSprite: {fileID: 803670114, guid: 596862938afaf0749be2a78b4be31fc1, type: 3}
     CanBeEaten: 0
+    isBreakable: 0
+  - ItemCode: 3
+    ItemName: Bush
+    ItemDescription: Just a bush
+    ItemSprite: {fileID: -1474844899, guid: e88786ff22af8644cbcd6305a3eccec7, type: 3}
+    CanBeEaten: 0
+    isBreakable: 0
+  - ItemCode: 4
+    ItemName: Flower
+    ItemDescription: Just a flower for your lover
+    ItemSprite: {fileID: 1380749596, guid: e88786ff22af8644cbcd6305a3eccec7, type: 3}
+    CanBeEaten: 0
+    isBreakable: 1

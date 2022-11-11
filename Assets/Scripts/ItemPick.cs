@@ -10,8 +10,8 @@ public class ItemPick : MonoBehaviour
 
         if (item!=null)
         {
-            string ItemName = InventoryManager.Instance.GetItemName(item.ItemCode);
-            Debug.Log(ItemName);
+            ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(item.ItemCode);
+            Debug.Log(itemDetails.ItemName);
         }
     }
 }

@@ -11,5 +11,6 @@ public class ItemDetails
     public string ItemDescription;
     public Sprite ItemSprite;
     public bool CanBeEaten;
+    public bool isBreakable;
 
 }

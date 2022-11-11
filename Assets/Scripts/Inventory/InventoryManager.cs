@@ -11,10 +11,11 @@ public class InventoryManager : Singleton<InventoryManager>
 
 
 
-    void Start()
-    {
-        
+   
 
+    protected override void Awake()
+    {
+        base.Awake();
         CreateDictionary();
     }
 
@@ -27,13 +28,13 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    public string GetItemName(int itemCode)
+    public ItemDetails GetItemDetails(int itemCode)
     {
         ItemDetails itemdetails;
 
         if (itemListDictionary.TryGetValue(itemCode,out itemdetails))
         {
-            return itemdetails.ItemName;
+            return itemdetails;
         }
         else
         {
