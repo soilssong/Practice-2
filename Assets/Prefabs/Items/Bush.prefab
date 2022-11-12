@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928626670676681493}
   - component: {fileID: 2973571261682751470}
-  - component: {fileID: 6905141395637213681}
+  - component: {fileID: 248317589790498553}
   m_Layer: 0
   m_Name: ItemSprite
   m_TagString: Untagged
@@ -85,22 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!58 &6905141395637213681
-CircleCollider2D:
+--- !u!114 &248317589790498553
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3606580803790770047}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.96875
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e4adf72568a48459807a45806ec4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3956262232366589848
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,9 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1790575064972252865}
   - component: {fileID: 7926816959821509049}
-  - component: {fileID: 6525252642278678611}
   - component: {fileID: -1184491924257488369}
-  - component: {fileID: 4973416035787332478}
+  - component: {fileID: 4352398060567589492}
   m_Layer: 0
   m_Name: Bush
   m_TagString: Untagged
@@ -150,32 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCode: 0
---- !u!61 &6525252642278678611
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3956262232366589848}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.010751128, y: 0.06450665}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.46244437, y: 0.46961176}
-  m_EdgeRadius: 0
 --- !u!212 &-1184491924257488369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -228,15 +197,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4973416035787332478
-MonoBehaviour:
+--- !u!70 &4352398060567589492
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3956262232366589848}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e4adf72568a48459807a45806ec4eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
