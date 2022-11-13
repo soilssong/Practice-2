@@ -10,8 +10,7 @@ public class ItemPick : MonoBehaviour
 
         if (item!=null)
         {
-            ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(item.ItemCode);
-            Debug.Log(itemDetails.ItemName);
+            InventoryManager.Instance.addItem(InventoryLocation.player, item,other.gameObject);
         }
     }
 }

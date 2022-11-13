@@ -4,6 +4,6 @@ using UnityEngine;
 
 public struct InventoryItem 
 {
-    int ItemCode;
-    int ItemQuantity;
+    public int ItemCode;
+    public int ItemQuantity;
 }
