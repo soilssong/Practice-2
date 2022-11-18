@@ -20,7 +20,8 @@ public class InventoryManager : Singleton<InventoryManager>
         CreateInventoryLists();
     }
 
-    
+    /*Basically fetching the Item informations from SO_List that we created, and allocate them to the
+    Dictionary declared above*/
     public void CreateDictionary()
     {
         itemListDictionary = new Dictionary<int, ItemDetails>();
@@ -30,6 +31,9 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
+    /* Just because there is a 2 different types of inventory (player and chest) i created 2 different inventory list
+     and we are keeping them in array.There is a another list for keeping the info about inventory capacities.
+    And with the method beneath, we are implementing this arrays.*/
     public void CreateInventoryLists()
     {
         InventoryItemsLists = new List<InventoryItem>[(int)InventoryLocation.count];
@@ -43,12 +47,16 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryListsCapacities[(int)InventoryLocation.player] = 10;
     }
 
+    /*This is the overloaded method that doing extra work for delete the object that we collected and holding reference to other addItem method
+     which is doing real "adding item" thing*/
     public void addItem(InventoryLocation inventorylocation,Item item,GameObject gameObjectToDelete)
     {
         addItem(inventorylocation, item);
         Destroy(gameObjectToDelete);
     }
 
+    /*This Method doing all thing about Adding item to inventory.Checking if there is already the same item have been placed in inventory
+     and according that processing through 2 different method.(They are overloaded also)*/
     public void addItem(InventoryLocation inventorylocation, Item item)
     {
         int itemCode = item.ItemCode;

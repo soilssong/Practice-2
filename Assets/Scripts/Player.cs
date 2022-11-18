@@ -13,6 +13,13 @@ public class Player : Singleton<Player>
     public delegate void Animation(string animation_type, float x,float y , bool a);
 
     public static event Animation changeRightLeftUpDown;
+    private Camera maincamera;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        maincamera = Camera.main;
+    }
 
     void Update()
     {
@@ -59,24 +66,10 @@ public class Player : Singleton<Player>
     
 
         
-    
-
-    //void IsRunning()
-    //{
-    //    if (Input.GetKey(KeyCode.M))
-    //    {
-
-    //        moveSpeed = 10f;
-    //        if (changeAnimation != null)
-    //        {
-    //            changeAnimation("Running",movement.x);
-                
-    //        }
-    //    }
-
-      
-    //}
-
+ public Vector3 GetPlayerViewPortPosition()
+    {
+        return maincamera.WorldToViewportPoint(transform.position);
+    }
     
 
 }
