@@ -84,7 +84,7 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryItem.ItemCode = itemCode;
         inventoryItem.ItemQuantity = 1;
         inventoryList.Add(inventoryItem);
-        DebugPrintInventoryList(inventoryList);
+        //DebugPrintInventoryList(inventoryList);
     }
     private void AddItemAtPosition(List<InventoryItem> inventoryList, int itemCode, int position)
     {
@@ -94,7 +94,7 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryItem.ItemCode = itemCode;
         inventoryList[position] = inventoryItem;
         Debug.ClearDeveloperConsole(); 
-        DebugPrintInventoryList(inventoryList);
+        //DebugPrintInventoryList(inventoryList);
     }
 
     public int FindItemInInventory(InventoryLocation inventorylocation,int itemCode)
@@ -125,15 +125,15 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    public void DebugPrintInventoryList(List<InventoryItem> inventoryList)
-    {
-        foreach (InventoryItem inventoryItem in inventoryList)
-        {
-            Debug.Log("Item Description : " + InventoryManager.Instance.GetItemDetails(inventoryItem.ItemCode).ItemDescription +
-                "Item Quantity : " + inventoryItem.ItemQuantity);
-        }
-        Debug.Log("**************************");
-    }
+    //public void DebugPrintInventoryList(List<InventoryItem> inventoryList)
+    //{
+    //    foreach (InventoryItem inventoryItem in inventoryList)
+    //    {
+    //        Debug.Log("Item Description : " + InventoryManager.Instance.GetItemDetails(inventoryItem.ItemCode).ItemDescription +
+    //            "Item Quantity : " + inventoryItem.ItemQuantity);
+    //    }
+    //    Debug.Log("**************************");
+    //}
 
 
 
