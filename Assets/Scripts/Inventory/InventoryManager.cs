@@ -84,7 +84,7 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryItem.ItemCode = itemCode;
         inventoryItem.ItemQuantity = 1;
         inventoryList.Add(inventoryItem);
-        //DebugPrintInventoryList(inventoryList);
+        DebugPrintInventoryList(inventoryList);
     }
     private void AddItemAtPosition(List<InventoryItem> inventoryList, int itemCode, int position)
     {
@@ -93,8 +93,8 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryItem.ItemQuantity = quantity;
         inventoryItem.ItemCode = itemCode;
         inventoryList[position] = inventoryItem;
-        Debug.ClearDeveloperConsole(); 
-        //DebugPrintInventoryList(inventoryList);
+        Debug.ClearDeveloperConsole();
+        DebugPrintInventoryList(inventoryList);
     }
 
     public int FindItemInInventory(InventoryLocation inventorylocation,int itemCode)
@@ -125,15 +125,46 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    //public void DebugPrintInventoryList(List<InventoryItem> inventoryList)
-    //{
-    //    foreach (InventoryItem inventoryItem in inventoryList)
-    //    {
-    //        Debug.Log("Item Description : " + InventoryManager.Instance.GetItemDetails(inventoryItem.ItemCode).ItemDescription +
-    //            "Item Quantity : " + inventoryItem.ItemQuantity);
-    //    }
-    //    Debug.Log("**************************");
-    //}
+    public void RemoveItem(InventoryLocation inventorylocation, int Itemcode)
+    {
+        List<InventoryItem> inventoryList = InventoryItemsLists[(int)inventorylocation];
+
+        int ItemPosition = FindItemInInventory(inventorylocation,Itemcode);
+
+        if (ItemPosition != -1)
+        {
+            RemoveItemAtPosition(inventoryList, Itemcode, ItemPosition);
+        }
+
+        EventHandler.CallInventoryUpdatedEvent(inventorylocation, InventoryItemsLists[(int)inventorylocation]);
+    }
+
+    public void RemoveItemAtPosition(List<InventoryItem> inventoryList, int ItemCode, int ItemPosition)
+    {
+        InventoryItem inventoryItem = new InventoryItem();
+        int quantity = inventoryList[ItemPosition].ItemQuantity - 1;
+        if (quantity>0)
+        {
+            inventoryItem.ItemQuantity = quantity;
+            inventoryItem.ItemCode = ItemCode;
+            inventoryList[ItemPosition] = inventoryItem;
+
+        }
+        else
+        {
+            inventoryList.RemoveAt(ItemPosition);
+        }
+    }
+
+    public void DebugPrintInventoryList(List<InventoryItem> inventoryList)
+    {
+        foreach (InventoryItem inventoryItem in inventoryList)
+        {
+            Debug.Log("Item Description : " + InventoryManager.Instance.GetItemDetails(inventoryItem.ItemCode).ItemDescription +
+                "Item Quantity : " + inventoryItem.ItemQuantity);
+        }
+        Debug.Log("**************************");
+    }
 
 
 

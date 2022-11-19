@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928626670676681493}
   - component: {fileID: 2973571261682751470}
-  - component: {fileID: 7054135458418815310}
+  - component: {fileID: 248317589790498553}
   m_Layer: 0
   m_Name: ItemSprite
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &7054135458418815310
+--- !u!114 &248317589790498553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1790575064972252865}
   - component: {fileID: 7926816959821509049}
-  - component: {fileID: 7606584189187102230}
-  - component: {fileID: 7691855657366848322}
+  - component: {fileID: -1184491924257488369}
+  - component: {fileID: 4352398060567589492}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9618aeb8ba62bf4bb8b727e56724f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCode: 0
---- !u!212 &7606584189187102230
+  itemCode: 5
+--- !u!212 &-1184491924257488369
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &7691855657366848322
+--- !u!70 &4352398060567589492
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,6 +210,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.032987356, y: 0.0716266}
-  m_Size: {x: 0.6484431, y: 0.6484431}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0

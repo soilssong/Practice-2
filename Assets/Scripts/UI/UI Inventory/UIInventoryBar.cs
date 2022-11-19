@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class UIInventoryBar : MonoBehaviour
 {
 
@@ -10,8 +11,9 @@ public class UIInventoryBar : MonoBehaviour
     [SerializeField] private UIInventorySlot[] uiInventorySlot = null;
     private RectTransform rectTransform;
     private bool _isInventoryBarPositionBottomRight = true;
-
     public bool isInventoryBarPositionBottomRight { get => _isInventoryBarPositionBottomRight; set => _isInventoryBarPositionBottomRight = value; }
+ 
+    public GameObject InventoryBarDraggedItem;
 
 
 
