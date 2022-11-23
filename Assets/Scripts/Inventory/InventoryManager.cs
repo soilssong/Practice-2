@@ -13,11 +13,24 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public int[] inventoryListsCapacities;
 
+    private int[] selectedInventoryItem;
     protected override void Awake()
     {
         base.Awake();
         CreateDictionary();
         CreateInventoryLists();
+        CreateSelectedInventoryItemArray();
+
+      
+
+    }
+    void CreateSelectedInventoryItemArray()
+    {
+        selectedInventoryItem = new int[(int)InventoryLocation.count];
+        for (int i = 0; i < selectedInventoryItem.Length; i++)
+        {
+            selectedInventoryItem[i] = -1;
+        }
     }
 
     /*Basically fetching the Item informations from SO_List that we created, and allocate them to the
@@ -182,9 +195,15 @@ public class InventoryManager : Singleton<InventoryManager>
 
 
 
+    public void ClearSelectedInventoryItem(InventoryLocation location)
+    {
+        selectedInventoryItem[(int)location] = -1;
+    }
 
-
-
+    public void SetSelectedInventoryItem(InventoryLocation location , int ItemCode)
+    {
+        selectedInventoryItem[(int)location] = ItemCode;
+    }
 
 
 

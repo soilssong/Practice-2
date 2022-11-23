@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
-public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDragHandler
+public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDragHandler , IPointerClickHandler
 {
     private Camera mainCamera;
     private Transform parentItem;
@@ -18,6 +18,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IE
     [HideInInspector] public ItemDetails itemDetails;
     [SerializeField] private UIInventoryBar inventoryBar = null;
 
+    [HideInInspector] public bool isSelected = false;
     [HideInInspector] public int itemQuantity;
     [SerializeField] private GameObject itemPrefab = null;
     [SerializeField] private int slotNumber = 0;
@@ -38,6 +39,8 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IE
 
             Image draggedItemImage = draggedItem.GetComponentInChildren<Image>();
             draggedItemImage.sprite = inventorySlotImage.sprite;
+            SetSelectedItem();
+
         }
         
     }
@@ -61,6 +64,8 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IE
                 int toSlotNumber = eventData.pointerCurrentRaycast.gameObject.GetComponent<UIInventorySlot>().slotNumber;
 
                 InventoryManager.Instance.SwapInventoryItem(InventoryLocation.player, slotNumber, toSlotNumber);
+
+                ClearSelectedItem();
             }
             else
             {
@@ -72,7 +77,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IE
 
     private void DropSelectedItemAtMousePosition()
     {
-        if (itemDetails != null)
+        if (itemDetails != null && isSelected )
         {
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
 
@@ -82,7 +87,49 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler, IE
 
 
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
+            if (InventoryManager.Instance.FindItemInInventory(InventoryLocation.player,item.ItemCode) ==-1)
+            {
+                ClearSelectedItem();
+            }
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (isSelected ==true)
+            {
+                ClearSelectedItem();
+
+            }
+            else
+            {
+                if (itemQuantity > 0)
+                {
+                    SetSelectedItem();
+                }
+              
+            }
+        }
+    }
+
+    public void SetSelectedItem()
+    {
+        inventoryBar.ClearHighlightOnInventorySlots();
+        isSelected = true;
+
+        inventoryBar.SetHighlightedInventorySlot();
+
+        InventoryManager.Instance.ClearSelectedInventoryItem(InventoryLocation.player);
+    }
+
+    public void ClearSelectedItem()
+    {
+        inventoryBar.ClearHighlightOnInventorySlots();
+        isSelected = false;
+
+        InventoryManager.Instance.ClearSelectedInventoryItem(InventoryLocation.player);
     }
 }
 

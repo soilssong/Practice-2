@@ -82,6 +82,7 @@ public class UIInventoryBar : MonoBehaviour
                             uiInventorySlot[i].textMeshProGui.text = inventoryList[i].ItemQuantity.ToString();
                             uiInventorySlot[i].itemDetails = itemDetails;
                             uiInventorySlot[i].itemQuantity = inventoryList[i].ItemQuantity;
+                            SetHighlightedInventorySlot(i);
                         }
                     }
                     else { break; }
@@ -100,6 +101,49 @@ public class UIInventoryBar : MonoBehaviour
                 uiInventorySlot[i].textMeshProGui.text = "";
                 uiInventorySlot[i].itemDetails = null;
                 uiInventorySlot[i].itemQuantity = 0;
+                SetHighlightedInventorySlot(i);
+            }
+        }
+    }
+
+
+    public void ClearHighlightOnInventorySlots()
+    {
+        if (uiInventorySlot.Length>0)
+        {
+            for (int i = 0; i < uiInventorySlot.Length; i++)
+            {
+                if (uiInventorySlot[i].isSelected)
+                {
+                    uiInventorySlot[i].isSelected = false;
+                    uiInventorySlot[i].inventorySlotHighLight.color = new Color(0f, 0f, 0f, 0f);
+
+                    InventoryManager.Instance.ClearSelectedInventoryItem(InventoryLocation.player);
+                }
+            }
+        }
+    }
+
+    public void SetHighlightedInventorySlot ()
+    {
+        if (uiInventorySlot.Length > 0)
+        {
+            for(int i = 0; i < uiInventorySlot.Length; i++)
+            {
+                SetHighlightedInventorySlot(i);
+            }
+        }
+    }
+    public void SetHighlightedInventorySlot(int itemPosition)
+    {
+        if (uiInventorySlot.Length > 0 && uiInventorySlot[itemPosition].itemDetails != null)
+        {
+            if (uiInventorySlot[itemPosition].isSelected)
+            {
+                uiInventorySlot[itemPosition].inventorySlotHighLight.color = new Color(1f, 0f, 0f, 0.3f);
+
+
+                InventoryManager.Instance.SetSelectedInventoryItem(InventoryLocation.player, uiInventorySlot[itemPosition].itemDetails.ItemCode);
             }
         }
     }
