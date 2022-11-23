@@ -97,10 +97,24 @@ public class InventoryManager : Singleton<InventoryManager>
         DebugPrintInventoryList(inventoryList);
     }
 
+    public void SwapInventoryItem(InventoryLocation location, int fromItem, int toItem)
+    {
+        if (fromItem < InventoryItemsLists[(int)location].Count && toItem< InventoryItemsLists[(int)location].Count && fromItem!=toItem&& 
+            fromItem >= 0 && toItem>=0)
+        {
+            InventoryItem fromInventoryItem = InventoryItemsLists[(int)location][fromItem];
+            InventoryItem toInventoryItem = InventoryItemsLists[(int)location][toItem];
+
+            InventoryItemsLists[(int)location][toItem] = fromInventoryItem;
+            InventoryItemsLists[(int)location][fromItem] = toInventoryItem;
+            EventHandler.CallInventoryUpdatedEvent(location, InventoryItemsLists[(int)location]);
+
+        }
+    }
     public int FindItemInInventory(InventoryLocation inventorylocation,int itemCode)
     {
         List<InventoryItem> inventoryList = InventoryItemsLists[(int)inventorylocation];
-
+         
         for (int i = 0; i < inventoryList.Count; i++)
         {
             if (inventoryList[i].ItemCode == itemCode)
